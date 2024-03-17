@@ -1,21 +1,28 @@
 'use client';
 
-import Image from "next/image";
 import {CldUploadButton} from "next-cloudinary";
 import { useState } from 'react';
 import axios from 'axios';
+import ImageUpload from './wigdet';
 
 
 export default function From() {
 
     const [video, setVideo] = useState<string|null>(null);
 
-  const handleUpload = (result:any) =>{
-    axios.post('/api/upload', {
-        video:result?.info?.secure_url,
-        name:video,
-    })
+    const handleUpload = async (result: any) => {
+      try {
+        const response = await axios.post('/api/upload', {
+          video: result?.info?.secure_url,
+          name: video,
+        });
+        console.log('Video upload successful:', response.data);
+      } catch (error) {
+        console.error('Error uploading video:', error);
+      }
+  
 }
+
 
   return (
     <main className="flex item-center jutify-center">
@@ -29,7 +36,7 @@ export default function From() {
                 uploadPreset="rjr9ezeg"
             >
             Upload
-            </CldUploadButton>
+        </CldUploadButton>
         </div>
     </main>
   );

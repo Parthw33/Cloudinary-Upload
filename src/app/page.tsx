@@ -3,7 +3,6 @@ import prisma from '@/app/libs/prismadb';
 import Gallery from "@/components/gallery";
 
 export default async function Home() {
-
 const getvideos = async () => {
     try {
         const videos = await prisma.videoupload.findMany();
