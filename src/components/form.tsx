@@ -3,7 +3,6 @@
 import {CldUploadButton} from "next-cloudinary";
 import { useState } from 'react';
 import axios from 'axios';
-import ImageUpload from './wigdet';
 
 
 export default function From() {
